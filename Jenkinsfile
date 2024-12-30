@@ -9,6 +9,10 @@ pipeline {
         NODE_ENV = "${params.ENV}"
     }
 
+    tools {
+        nodejs 'NodeJS 20'
+    }
+
     stages {
         stage('Install Dependencies') {
             steps {
