@@ -13,9 +13,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-                cache(path: 'node_modules', key: "npm-cache-${env.BRANCH_NAME}") {
-                    sh 'npm install'
-                }
+                sh 'npm install'
+                // cache(path: 'node_modules', key: "npm-cache-${env.BRANCH_NAME}") {
+                //     sh 'npm install'
+                // }
             }
         }
 
