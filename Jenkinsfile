@@ -17,10 +17,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'npm install'
-                // cache(path: 'node_modules', key: "npm-cache-${env.BRANCH_NAME}") {
-                //     sh 'npm install'
-                // }
+                // sh 'npm install'
+                cache(path: 'node_modules', key: "npm-cache-${env.BRANCH_NAME}") {
+                    sh 'npm install'
+                }
             }
         }
 
@@ -34,10 +34,9 @@ pipeline {
                 }
                 stage('Lint') {
                     steps {
-                        echo 'Linting the code...'
-                        sh 'npm run lint'
+                        sh 'npx eslint .'
                     }
-                }
+                } 
                 stage('Type Check') {
                     steps {
                         echo 'Checking TypeScript types...'
