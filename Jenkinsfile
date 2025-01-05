@@ -163,14 +163,14 @@ pipeline {
             //  subject: "Build ${env.BUILD_NUMBER} Failed",
             //  body: "Check the logs at ${env.BUILD_URL}"
         }
-        always {
-            echo 'Cleaning up...'
-            cleanWs()
-            publishHTML(target: [
-                reportDir: 'coverage',
-                reportFiles: 'index.html',
-                reportName: 'Coverage Report'
-            ])
-        }
+        // always {
+        //     echo 'Cleaning up...'
+        //     cleanWs()
+        //     publishHTML(target: [
+        //         reportDir: 'coverage',
+        //         reportFiles: 'index.html',
+        //         reportName: 'Coverage Report'
+        //     ])
+        // }
     }
 }
