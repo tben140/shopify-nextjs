@@ -30,7 +30,7 @@ pipeline {
                     steps {
                         echo 'Running Prettier to format code...'
                         script {
-                            def result = sh(script: 'npx prettier --check "**/*.js"', returnStatus: true)
+                            def result = sh(script: 'npx prettier --check .', returnStatus: true)
                             if (result != 0) {
                                 error("Prettier check failed. Please fix formatting issues.")
                             }
