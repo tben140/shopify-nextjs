@@ -75,12 +75,12 @@ pipeline {
         //     }
         // }
 
-        // stage('Build') {
-        //     steps {
-        //         echo 'Building the project...'
-        //         sh 'npm run build'
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                sh 'next build'
+            }
+        }
 
         // stage('Testing') {
         //     parallel {
