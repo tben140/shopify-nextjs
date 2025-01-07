@@ -24,27 +24,32 @@ pipeline {
             }
         }
 
-        // stage('Code Quality Checks') {
-        //     parallel {
-        //         stage('Format') {
-        //             steps {
-        //                 echo 'Running Prettier to format code...'
-        //                 sh 'npm run format'
-        //             }
-        //         }
-        //         stage('Lint') {
-        //             steps {
-        //                 sh 'npx eslint .'
-        //             }
-        //         } 
-        //         stage('Type Check') {
-        //             steps {
-        //                 echo 'Checking TypeScript types...'
-        //                 sh 'npm run type-check'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Code Quality Checks') {
+            parallel {
+                stage('Format') {
+                    steps {
+                        echo 'Running Prettier to format code...'
+                        script {
+                            def result = sh(script: 'npx prettier --check "**/*.js"', returnStatus: true)
+                            if (result != 0) {
+                                error("Prettier check failed. Please fix formatting issues.")
+                            }
+                        }
+                    }
+                }
+                stage('Lint') {
+                    steps {
+                        sh 'npx eslint .'
+                    }
+                } 
+                stage('Type Check') {
+                    steps {
+                        echo 'Checking TypeScript types...'
+                        sh 'npm run type-check'
+                    }
+                }
+            }
+        }
 
         // stage('Security and Analysis') {
         //     parallel {
