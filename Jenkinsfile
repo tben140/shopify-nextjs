@@ -45,7 +45,7 @@ pipeline {
                 stage('Type Check') {
                     steps {
                         echo 'Checking TypeScript types...'
-                        sh 'npm run type-check'
+                        sh 'tsc --noEmit'
                     }
                 }
             }
